@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daftar Gambar</title>
+
+    <style>
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto 25px;
+}
+
+.search-box input {
+    width: 100%;
+    height: 45px;
+
+    padding: 0 15px;
+
+    background: #191919;
+    color: #fff;
+
+    border: 1px solid #292929;
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 13px;
+
+    transition: 0.25s ease;
+}
+
+.search-box input::placeholder {
+    color: #777;
+}
+
+.search-box input:focus {
+    border-color: rgba(255, 215, 0, 0.6);
+
+    box-shadow:
+        0 0 0 2px rgba(255, 215, 0, 0.08);
+}
+
+/* TIDAK ADA HASIL */
+
+.no-result {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .search-box {
+        width: 94%;
+    }
+
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #202020 0%, #0d0d0d 45%, #080808 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        header h1 {
+            font-size: 34px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        header h1 span {
+            color: #ffd700;
+        }
+
+        header p {
+            margin-top: 10px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto 70px;
+        }
+
+        /* =========================
+           GALLERY
+        ========================= */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: rgba(25, 25, 25, 0.9);
+            border: 1px solid #292929;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s ease;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.45);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* =========================
+           IMAGE
+        ========================= */
+
+        .image-box {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #111;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .image-box img {
+            transform: scale(1.07);
+        }
+
+        /* NUMBER */
+
+        .number {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+
+            padding: 5px 9px;
+
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+
+            color: #ffd700;
+
+            border-radius: 7px;
+
+            font-size: 11px;
+            font-weight: bold;
+
+            z-index: 2;
+        }
+
+        /* =========================
+           CARD FOOTER
+        ========================= */
+
+        .card-footer {
+            padding: 14px;
+        }
+
+        .image-name {
+            color: #eee;
+            font-size: 14px;
+            font-weight: 600;
+
+            margin-bottom: 12px;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* =========================
+           DOWNLOAD BUTTON
+        ========================= */
+
+        .download-btn {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            border: 1px solid rgba(255, 215, 0, 0.4);
+
+            background: rgba(255, 215, 0, 0.07);
+
+            color: #ffd700;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.25s ease;
+        }
+
+        .download-btn:hover {
+            background: #ffd700;
+            color: #111;
+        }
+
+        .download-icon {
+            font-size: 16px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.9);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+
+            z-index: 9999;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal img {
+            max-width: 95%;
+            max-height: 88vh;
+
+            border-radius: 10px;
+
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.8);
+        }
+
+        .close {
+            position: fixed;
+
+            top: 18px;
+            right: 28px;
+
+            font-size: 38px;
+
+            color: white;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .close:hover {
+            color: #ffd700;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            color: #555;
+
+            font-size: 12px;
+
+            border-top: 1px solid #1c1c1c;
+        }
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 40px 15px 25px;
+            }
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .image-box {
+                height: 160px;
+            }
+
+            .card-footer {
+                padding: 10px;
+            }
+
+            .image-name {
+                font-size: 12px;
+            }
+
+            .download-btn {
+                font-size: 11px;
+                padding: 9px 5px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <!-- SEARCH -->
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Cari nama file..."
+        autocomplete="off"
+    >
+
+</div>
+
+        <h1>
+            DAFTAR <span>GAMBAR</span> PUNYA BR </span>
+        </h1>
+
+        <p>
+            Silahkan pilih gambar yang ingin Anda download.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         GALLERY
+    ========================= -->
+
+    <main class="container">
+
+        <div class="gallery" id="gallery"></div>
+
+    </main>
+
+
+    <!-- =========================
+         MODAL PREVIEW
+    ========================= -->
+
+    <div class="modal" id="imageModal">
+
+        <span class="close" onclick="closeImage()">
+            &times;
+        </span>
+
+        <img id="modalImage" src="" alt="Preview">
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        © 2026 BR PUNYA
+
+    </footer>
+
+
+    <script>
+
+        /* ==================================================
+           DAFTAR GAMBAR
+
+           CUKUP TAMBAHKAN NAMA FILE DI SINI
+        ================================================== */
+
+        const images = [
+
+            "CEK LIMIT DANA.png",
+            "CEK NOMOR DANA.png",
+            "BUKTI DOWNLOAD APK.png",
+            "CARA KIRIM GAMBAR.jpg",
+            "PROFIL DANA.jpg",
+            "QRIS BANK JAGO.png",
+            "QRIS BCA 2.png",
+            "QRIS BCA.png",
+            "QRIS GOPAY.jpg",
+            "QRIS BRI.png",
+            "QRIS DANA.png",
+            "QRIS LINK AJA.png",
+            "QRIS OCTO.png", 
+            "QRIS OVO.png",
+            "QRIS SEABANK.png",
+            "QRIS SHOPE.png",
+            "QRIS WONDR.png",
+            "QRIS MANDIRI.jpg",
+            "CONTOH MBANKING BANK JAGO.png",
+            "CEK AKTIVITAS BRI.png",
+            "CONTOH MBANKING BRI.png",
+            "RIWAYAT AKTIVITAS DANA.jpg",
+            "SBO BET.png",
+            "CARA DEPO.jpg",
+            "CARA KIRIM UANG DANA.png",
+            "RIWAYAT GOPAY.png",
+            "LUPA PASSWORD 2.png",
+            "PROFIL GOPAY.jpg",
+            "HADIAH COLOK MACAU 5D.jpg",
+            "LOGOUT POKER.jpg",
+            "CONTOH KTP.jpg",
+            "KING KONG.jpg",
+            "HISTORY SLOT.png",
+            "MODE DEKSTOP.png",
+            "CARA DEPOSIT QRIS.jpg",
+            "MENU TOGEL.png",
+            "MENU UBAH PASSWORD.png",
+            "DANAMON.png",
+            "HADIAH HIBURAN.jpg",
+            "DETAIL QRIS BCA.jpg",
+            "PROFIL OVO.png",
+            "PROFIL LINKAJA.png",
+            "SEABANK.png",
+            "LIMIT LINK AJA.jpg",
+            "FULL SERVICE LINKAJA.png",
+            "gambar20.png",
+            "gambar20.png",
+            "gambar20.png",
+            "gambar20.png",
+            "gambar20.png",
+            "gambar20.png",
+            "gambar20.png",
+            
+
+
+
+        ];
+
+
+        /* ==================================================
+           MEMBUAT GALLERY OTOMATIS
+        ================================================== */
+
+        const gallery = document.getElementById("gallery");
+        const searchInput =
+    document.getElementById("searchInput");
+
+function displayImages() {
+
+    gallery.innerHTML = "";
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    const filteredImages =
+        images.filter(image => {
+
+            return image
+                .toLowerCase()
+                .includes(search);
+
+        });
+
+
+    /* =========================
+       JIKA TIDAK DITEMUKAN
+    ========================= */
+
+    if (filteredImages.length === 0) {
+
+        gallery.innerHTML = `
+            <div class="no-result">
+                🔍 File tidak ditemukan.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    /* =========================
+       BUAT GALLERY
+    ========================= */
+
+    filteredImages.forEach((image) => {
+
+        const imagePath =
+            "images/" + image;
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        card.innerHTML = `
+
+            <div
+                class="image-box"
+                onclick="openImage('${imagePath}')"
+            >
+
+                <span class="number">
+                    ${String(
+                        images.indexOf(image) + 1
+                    ).padStart(2, "0")}
+                </span>
+
+                <img
+                    src="${imagePath}"
+                    alt="${image}"
+                    loading="lazy"
+                >
+
+            </div>
+
+
+            <div class="card-footer">
+
+                <div class="image-name">
+                    ${image}
+                </div>
+
+
+                <a
+                    class="download-btn"
+                    href="${imagePath}"
+                    download="${image}"
+                >
+
+                    <span class="download-icon">
+                        ↓
+                    </span>
+
+                    Download
+
+                </a>
+
+            </div>
+
+        `;
+
+
+        gallery.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   PENCARIAN REAL-TIME
+========================= */
+
+searchInput.addEventListener(
+    "input",
+    displayImages
+);
+
+
+/* =========================
+   TAMPILKAN SEMUA SAAT AWAL
+========================= */
+
+displayImages();
+       
+
+        /* ==================================================
+           OPEN IMAGE
+        ================================================== */
+
+        function openImage(image) {
+
+            const modal =
+                document.getElementById("imageModal");
+
+            const modalImage =
+                document.getElementById("modalImage");
+
+
+            modalImage.src = image;
+
+            modal.classList.add("active");
+
+        }
+
+
+        /* ==================================================
+           CLOSE IMAGE
+        ================================================== */
+
+        function closeImage() {
+
+            const modal =
+                document.getElementById("imageModal");
+
+            modal.classList.remove("active");
+
+        }
+
+
+        /* ==================================================
+           ESC UNTUK MENUTUP PREVIEW
+        ================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeImage();
+
+                }
+
+            }
+        );
+
+
+        /* ==================================================
+           KLIK AREA MODAL UNTUK MENUTUP
+        ================================================== */
+
+        document
+            .getElementById("imageModal")
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (event.target === this) {
+
+                        closeImage();
+
+                    }
+
+                }
+            );
+
+    </script>
+
+</body>
+</html>

@@ -1,470 +1,170 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DAFTAR GAMBAR // BR PUNYA</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#ffd400;--amber:#ff9d00;--bg:#030405;--panel:rgba(8,10,12,.78);--line:rgba(255,212,0,.18)}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#fff;min-height:100vh;overflow-x:hidden}
 
-    <title>Daftar Gambar</title>
+/* BACKGROUND */
+#stars{position:fixed;inset:0;z-index:-6;pointer-events:none}
+.grid{position:fixed;inset:0;z-index:-5;pointer-events:none;opacity:.24;background-image:
+linear-gradient(rgba(255,212,0,.06) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,212,0,.06) 1px,transparent 1px);
+background-size:55px 55px;
+transform:perspective(500px) rotateX(60deg) scale(1.8);
+transform-origin:center bottom;
+animation:gridMove 8s linear infinite}
+@keyframes gridMove{to{background-position:0 55px,55px 0}}
+.vignette{position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(circle at center,transparent 25%,rgba(0,0,0,.5) 100%)}
+.beam{position:fixed;z-index:-2;width:45%;height:2px;left:-50%;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 20px 4px rgba(255,212,0,.35);animation:beam 6s linear infinite;transform:rotate(-18deg)}
+@keyframes beam{0%{top:20%;left:-55%}100%{top:78%;left:110%}}
+.orb{position:fixed;border-radius:50%;filter:blur(75px);opacity:.2;z-index:-4;pointer-events:none}
+.a{width:430px;height:430px;background:#ffd000;left:-210px;top:8%;animation:oa 13s ease-in-out infinite alternate}
+.b{width:350px;height:350px;background:#ff6500;right:-180px;top:42%;animation:ob 16s ease-in-out infinite alternate}
+.c{width:300px;height:300px;background:#fff08a;left:35%;bottom:-220px;animation:oc 18s ease-in-out infinite alternate}
+@keyframes oa{to{transform:translate(300px,180px)}}@keyframes ob{to{transform:translate(-280px,-170px)}}@keyframes oc{to{transform:translate(160px,-220px)}}
 
-    <style>
-/* =========================
-   SEARCH
-========================= */
-
-.search-box {
-    width: 92%;
-    max-width: 1200px;
-    margin: 0 auto 25px;
+/* HEADER */
+header{position:relative;padding:48px 20px 28px;text-align:center;border-bottom:1px solid rgba(255,212,0,.12)}
+.topline{font-size:10px;letter-spacing:4px;color:#777;margin-bottom:16px}
+.topline span{color:var(--gold)}
+.logo{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border:1px solid rgba(255,212,0,.3);background:rgba(255,212,0,.035);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);box-shadow:0 0 28px rgba(255,212,0,.06)}
+.status{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 7px var(--gold),0 0 20px var(--gold);animation:pulse 1.3s infinite}
+.logo b{font-size:10px;letter-spacing:2px;color:#e7e7e7}
+@keyframes pulse{50%{transform:scale(1.8);opacity:.45}}
+h1{
+  font-size:clamp(30px,6vw,58px);
+  letter-spacing:7px;
+  margin:18px 0 9px;
+  font-weight:900;
+  color:#fff;
+  text-shadow:
+    0 0 6px rgba(255,255,255,.45),
+    0 0 18px rgba(255,255,255,.25),
+    0 0 35px rgba(255,212,0,.15);
 }
 
-.search-box input {
-    width: 100%;
-    height: 45px;
-
-    padding: 0 15px;
-
-    background: #191919;
-    color: #fff;
-
-    border: 1px solid #292929;
-    border-radius: 10px;
-
-    outline: none;
-
-    font-size: 13px;
-
-    transition: 0.25s ease;
+h1 span{
+  color:var(--gold);
+  text-shadow:
+    0 0 8px var(--gold),
+    0 0 18px var(--gold),
+    0 0 40px rgba(255,157,0,.55),
+    0 0 70px rgba(255,157,0,.25);
 }
+.subtitle{color:#888;font-size:13px;letter-spacing:.5px}
 
-.search-box input::placeholder {
-    color: #777;
+/* MAIN */
+.main{width:92%;max-width:1280px;margin:24px auto 70px}
+.dashboard{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-bottom:18px}
+.search{position:relative}
+.search input{width:100%;padding:14px 18px 14px 43px;background:rgba(5,7,8,.85);border:1px solid var(--line);color:#fff;outline:0;border-radius:10px;font-size:12px;backdrop-filter:blur(10px)}
+.search input:focus{border-color:rgba(255,212,0,.6);box-shadow:0 0 25px rgba(255,212,0,.09)}
+.search:before{content:"⌕";position:absolute;z-index:2;left:15px;top:8px;color:var(--gold);font-size:23px}
+.stats{display:flex;gap:8px}
+.stat{min-width:105px;padding:11px 14px;border:1px solid var(--line);background:var(--panel);border-radius:10px;text-align:center;font-size:9px;color:#666;letter-spacing:1px}
+.stat strong{display:block;color:var(--gold);font-size:15px;margin-top:3px}
+.section{display:flex;justify-content:space-between;align-items:center;margin:20px 0 12px;padding-bottom:10px;border-bottom:1px solid rgba(255,212,0,.1)}
+.section-title{font-size:11px;letter-spacing:2px;color:#aaa}.section-title b{color:var(--gold)}
+.section-right{font-size:9px;color:#555;letter-spacing:1px}
+
+/* CARDS */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:18px}
+.card{position:relative;overflow:hidden;background:var(--panel);border:1px solid rgba(255,212,0,.13);clip-path:polygon(0 0,calc(100% - 13px) 0,100% 13px,100% 100%,13px 100%,0 calc(100% - 13px));box-shadow:0 14px 35px rgba(0,0,0,.4);transition:.35s;animation:cardIn .55s both}
+.card:hover{transform:translateY(-8px);border-color:rgba(255,212,0,.6);box-shadow:0 20px 55px rgba(0,0,0,.7),0 0 28px rgba(255,212,0,.12)}
+.card:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.12) 48%,transparent 62%);transform:translateX(-130%);transition:.75s;z-index:5;pointer-events:none}
+.card:hover:before{transform:translateX(130%)}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.image{height:220px;background:#0b0c0d;position:relative;overflow:hidden;cursor:pointer}
+.image img{width:100%;height:100%;object-fit:cover;display:block;transition:.55s}
+.card:hover .image img{transform:scale(1.08);filter:saturate(1.12) contrast(1.03)}
+.corner{position:absolute;z-index:4;width:14px;height:14px;border-color:var(--gold);opacity:.7}
+.tl{top:8px;left:8px;border-top:1px solid;border-left:1px solid}.tr{top:8px;right:8px;border-top:1px solid;border-right:1px solid}
+.bl{bottom:8px;left:8px;border-bottom:1px solid;border-left:1px solid}.br{bottom:8px;right:8px;border-bottom:1px solid;border-right:1px solid}
+.num{position:absolute;top:10px;left:10px;padding:5px 8px;background:rgba(0,0,0,.72);border:1px solid rgba(255,212,0,.22);color:var(--gold);font-size:9px;z-index:6}
+.viewtag{position:absolute;right:10px;top:10px;padding:5px 8px;background:rgba(0,0,0,.7);color:#ddd;font-size:9px;opacity:0;transition:.25s;z-index:6}.card:hover .viewtag{opacity:1}
+.info{padding:13px}.name{font-size:12px;font-weight:700;color:#eee;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:11px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.btn{border:1px solid rgba(255,212,0,.25);padding:9px 5px;border-radius:7px;text-align:center;text-decoration:none;font-size:9px;font-weight:800;cursor:pointer;transition:.25s}
+.download{background:linear-gradient(135deg,#ffe000,#ff9e00);color:#111;box-shadow:0 0 15px rgba(255,190,0,.1)}.download:hover{box-shadow:0 0 25px rgba(255,210,0,.4);transform:translateY(-1px)}
+.preview{color:#ffd85a;background:rgba(255,212,0,.035)}.preview:hover{background:rgba(255,212,0,.12)}
+.empty{display:none;padding:65px;text-align:center;color:#666;border:1px dashed rgba(255,212,0,.18);border-radius:10px}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.94);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:25px;z-index:99}
+.modal.active{display:flex}
+.modal img{max-width:94%;max-height:87vh;border:1px solid rgba(255,212,0,.3);box-shadow:0 0 70px rgba(255,212,0,.12)}
+.close{position:fixed;right:22px;top:18px;width:42px;height:42px;border-radius:50%;background:#0b0c0d;color:#fff;border:1px solid var(--line);font-size:27px;cursor:pointer}.close:hover{background:var(--gold);color:#111}
+
+/* LOADER */
+.loader{position:fixed;inset:0;background:#030405;z-index:999;display:flex;align-items:center;justify-content:center;transition:.6s}
+.loader.hide{opacity:0;visibility:hidden}
+.loadbox{text-align:center;width:230px}.loadlogo{font-size:20px;font-weight:900;letter-spacing:4px}.loadlogo span{color:var(--gold)}
+.bar{height:2px;background:#222;margin-top:18px;overflow:hidden}.bar i{display:block;width:30%;height:100%;background:var(--gold);box-shadow:0 0 15px var(--gold);animation:load 1.2s infinite}.loadtext{font-size:9px;color:#666;letter-spacing:2px;margin-top:9px}
+@keyframes load{from{transform:translateX(-100%)}to{transform:translateX(430%)}}
+footer{padding:28px;text-align:center;color:#444;border-top:1px solid rgba(255,255,255,.06);font-size:10px;letter-spacing:1px}
+
+@media(max-width:650px){
+header{padding:42px 15px 25px}h1{letter-spacing:4px}.main{width:94%}.dashboard{grid-template-columns:1fr}.stats{display:grid;grid-template-columns:1fr 1fr}.gallery{grid-template-columns:repeat(2,1fr);gap:11px}.image{height:155px}.info{padding:9px}.name{font-size:10px}.btn{font-size:8px;padding:9px 2px}.grid{background-size:35px 35px}
 }
-
-.search-box input:focus {
-    border-color: rgba(255, 215, 0, 0.6);
-
-    box-shadow:
-        0 0 0 2px rgba(255, 215, 0, 0.08);
-}
-
-/* TIDAK ADA HASIL */
-
-.no-result {
-    grid-column: 1 / -1;
-
-    text-align: center;
-
-    padding: 50px 20px;
-
-    color: #777;
-
-    font-size: 14px;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-    .search-box {
-        width: 94%;
-    }
-
-}
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background:
-                radial-gradient(circle at top, #202020 0%, #0d0d0d 45%, #080808 100%);
-            color: #fff;
-            min-height: 100vh;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            text-align: center;
-            padding: 55px 20px 35px;
-        }
-
-        header h1 {
-            font-size: 34px;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-
-        header h1 span {
-            color: #ffd700;
-        }
-
-        header p {
-            margin-top: 10px;
-            color: #888;
-            font-size: 14px;
-        }
-
-        /* =========================
-           CONTAINER
-        ========================= */
-
-        .container {
-            width: 92%;
-            max-width: 1200px;
-            margin: 0 auto 70px;
-        }
-
-        /* =========================
-           GALLERY
-        ========================= */
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 22px;
-        }
-
-        /* =========================
-           CARD
-        ========================= */
-
-        .card {
-            background: rgba(25, 25, 25, 0.9);
-            border: 1px solid #292929;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: 0.3s ease;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.45);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        /* =========================
-           IMAGE
-        ========================= */
-
-        .image-box {
-            position: relative;
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            cursor: pointer;
-            background: #111;
-        }
-
-        .image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .card:hover .image-box img {
-            transform: scale(1.07);
-        }
-
-        /* NUMBER */
-
-        .number {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-
-            padding: 5px 9px;
-
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(6px);
-
-            color: #ffd700;
-
-            border-radius: 7px;
-
-            font-size: 11px;
-            font-weight: bold;
-
-            z-index: 2;
-        }
-
-        /* =========================
-           CARD FOOTER
-        ========================= */
-
-        .card-footer {
-            padding: 14px;
-        }
-
-        .image-name {
-            color: #eee;
-            font-size: 14px;
-            font-weight: 600;
-
-            margin-bottom: 12px;
-
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* =========================
-           DOWNLOAD BUTTON
-        ========================= */
-
-        .download-btn {
-            width: 100%;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-
-            padding: 10px;
-
-            border-radius: 8px;
-
-            border: 1px solid rgba(255, 215, 0, 0.4);
-
-            background: rgba(255, 215, 0, 0.07);
-
-            color: #ffd700;
-
-            text-decoration: none;
-
-            font-size: 13px;
-            font-weight: 600;
-
-            transition: 0.25s ease;
-        }
-
-        .download-btn:hover {
-            background: #ffd700;
-            color: #111;
-        }
-
-        .download-icon {
-            font-size: 16px;
-        }
-
-        /* =========================
-           MODAL
-        ========================= */
-
-        .modal {
-            position: fixed;
-            inset: 0;
-
-            background: rgba(0, 0, 0, 0.9);
-
-            display: none;
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 25px;
-
-            z-index: 9999;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal img {
-            max-width: 95%;
-            max-height: 88vh;
-
-            border-radius: 10px;
-
-            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.8);
-        }
-
-        .close {
-            position: fixed;
-
-            top: 18px;
-            right: 28px;
-
-            font-size: 38px;
-
-            color: white;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-        }
-
-        .close:hover {
-            color: #ffd700;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            text-align: center;
-
-            padding: 25px;
-
-            color: #555;
-
-            font-size: 12px;
-
-            border-top: 1px solid #1c1c1c;
-        }
-
-        /* =========================
-           ANIMATION
-        ========================= */
-
-        @keyframes fadeIn {
-
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 600px) {
-
-            header {
-                padding: 40px 15px 25px;
-            }
-
-            header h1 {
-                font-size: 25px;
-            }
-
-            .container {
-                width: 94%;
-            }
-
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-
-            .image-box {
-                height: 160px;
-            }
-
-            .card-footer {
-                padding: 10px;
-            }
-
-            .image-name {
-                font-size: 12px;
-            }
-
-            .download-btn {
-                font-size: 11px;
-                padding: 9px 5px;
-            }
-
-        }
-
-    </style>
+</style>
 </head>
-
 <body>
 
-
-    <!-- =========================
-         HEADER
-    ========================= -->
-
-    <header>
-
-        <!-- SEARCH -->
-
-<div class="search-box">
-
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="🔍 Cari nama file..."
-        autocomplete="off"
-    >
-
+<div class="loader" id="loader">
+  <div class="loadbox">
+    <div class="loadlogo">DAFTAR <span>GAMBAR</span></div>
+    <div class="bar"><i></i></div>
+    <div class="loadtext">INITIALIZING GALLERY...</div>
+  </div>
 </div>
 
-        <h1>
-            DAFTAR <span>GAMBAR</span> PUNYA BR </span>
-        </h1>
+<canvas id="stars"></canvas>
+<div class="grid"></div><div class="vignette"></div><div class="beam"></div>
+<div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
 
-        <p>
-            Silahkan pilih gambar yang ingin Anda download.
-        </p>
+<header>
+  <div class="topline">SYSTEM <span>//</span> ONLINE <span>//</span> IMAGE DATABASE</div>
+  <div class="logo"><i class="status"></i><b>BR GALLERY SYSTEM</b></div>
+  <h1>DAFTAR <span>GAMBAR</span></h1>
+  <p class="subtitle">Pilih gambar • Lihat preview • Download dengan mudah</p>
+</header>
 
-    </header>
-
-
-    <!-- =========================
-         GALLERY
-    ========================= -->
-
-    <main class="container">
-
-        <div class="gallery" id="gallery"></div>
-
-    </main>
-
-
-    <!-- =========================
-         MODAL PREVIEW
-    ========================= -->
-
-    <div class="modal" id="imageModal">
-
-        <span class="close" onclick="closeImage()">
-            &times;
-        </span>
-
-        <img id="modalImage" src="" alt="Preview">
-
+<main class="main">
+  <div class="dashboard">
+    <div class="search"><input id="search" placeholder="SEARCH IMAGE DATABASE..." autocomplete="off"></div>
+    <div class="stats">
+      <div class="stat">TOTAL<strong id="total">0</strong></div>
+      <div class="stat">STATUS<strong>ONLINE</strong></div>
     </div>
+  </div>
 
+  <div class="section">
+    <div class="section-title">◈ <b>IMAGE DATABASE</b></div>
+    <div class="section-right">LIVE // READY</div>
+  </div>
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
+  <div class="gallery" id="gallery"></div>
+  <div class="empty" id="empty">NO IMAGE FOUND</div>
+</main>
 
-    <footer>
+<div class="modal" id="modal">
+  <button class="close" onclick="closeModal()">×</button>
+  <img id="modalImg" alt="Preview">
+</div>
 
-        © 2026 BR PUNYA
+<footer>© 2026 // DAFTAR GAMBAR // BR PUNYA</footer>
 
-    </footer>
-
-
-    <script>
-
-        /* ==================================================
-           DAFTAR GAMBAR
-
-           CUKUP TAMBAHKAN NAMA FILE DI SINI
-        ================================================== */
-
-        const images = [
+<script>
+/* =========================================
+   CUKUP TAMBAHKAN NAMA FILE GAMBAR DI SINI
+   ========================================= */
+const images=[
 
             "CEK LIMIT DANA.png",
             "CEK NOMOR DANA.png",
@@ -527,219 +227,75 @@
             "QRIS GANGGUAN.png",
             "QRIS NORMAL.png",
             "BNI QRIS.png",
-            "BUKTI QRIS LINKAJA.png"
+            "BUKTI QRIS LINKAJA.png",
+            "TAB SAMARAN.jpg"
 
 
 
 
 
-        ];
+      
+];
 
+const gallery=document.getElementById("gallery");
+const total=document.getElementById("total");
+const empty=document.getElementById("empty");
+total.textContent=images.length;
 
-        /* ==================================================
-           MEMBUAT GALLERY OTOMATIS
-        ================================================== */
-
-        const gallery = document.getElementById("gallery");
-        const searchInput =
-    document.getElementById("searchInput");
-
-function displayImages() {
-
-    gallery.innerHTML = "";
-
-    const search =
-        searchInput.value
-            .toLowerCase()
-            .trim();
-
-
-    const filteredImages =
-        images.filter(image => {
-
-            return image
-                .toLowerCase()
-                .includes(search);
-
-        });
-
-
-    /* =========================
-       JIKA TIDAK DITEMUKAN
-    ========================= */
-
-    if (filteredImages.length === 0) {
-
-        gallery.innerHTML = `
-            <div class="no-result">
-                🔍 File tidak ditemukan.
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    /* =========================
-       BUAT GALLERY
-    ========================= */
-
-    filteredImages.forEach((image) => {
-
-        const imagePath =
-            "images/" + image;
-
-        const card =
-            document.createElement("div");
-
-        card.className = "card";
-
-
-        card.innerHTML = `
-
-            <div
-                class="image-box"
-                onclick="openImage('${imagePath}')"
-            >
-
-                <span class="number">
-                    ${String(
-                        images.indexOf(image) + 1
-                    ).padStart(2, "0")}
-                </span>
-
-                <img
-                    src="${imagePath}"
-                    alt="${image}"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="card-footer">
-
-                <div class="image-name">
-                    ${image}
-                </div>
-
-
-                <a
-                    class="download-btn"
-                    href="${imagePath}"
-                    download="${image}"
-                >
-
-                    <span class="download-icon">
-                        ↓
-                    </span>
-
-                    Download
-
-                </a>
-
-            </div>
-
-        `;
-
-
-        gallery.appendChild(card);
-
-    });
-
+function render(q=""){
+  gallery.innerHTML="";
+  let n=0;
+  images.forEach((file,i)=>{
+    if(!file.toLowerCase().includes(q.toLowerCase()))return;
+    n++;
+    const path="images/"+file;
+    const card=document.createElement("article");
+    card.className="card";
+    card.style.animationDelay=(n*.035)+"s";
+    card.innerHTML=`
+      <div class="image" onclick="openModal('${path}')">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="num">IMG-${String(i+1).padStart(3,"0")}</span>
+        <span class="viewtag">PREVIEW</span>
+        <img src="${path}" alt="${file}" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="name" title="${file}">${file}</div>
+        <div class="actions">
+          <a class="btn download" href="${path}" download="${file}">↓ DOWNLOAD</a>
+          <button class="btn preview" onclick="openModal('${path}')">◉ PREVIEW</button>
+        </div>
+      </div>`;
+    gallery.appendChild(card);
+  });
+  empty.style.display=n?"none":"block";
 }
+render();
 
+document.getElementById("search").addEventListener("input",e=>render(e.target.value));
+function openModal(path){document.getElementById("modalImg").src=path;document.getElementById("modal").classList.add("active")}
+function closeModal(){document.getElementById("modal").classList.remove("active")}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loader").classList.add("hide"),650));
 
-/* =========================
-   PENCARIAN REAL-TIME
-========================= */
-
-searchInput.addEventListener(
-    "input",
-    displayImages
-);
-
-
-/* =========================
-   TAMPILKAN SEMUA SAAT AWAL
-========================= */
-
-displayImages();
-       
-
-        /* ==================================================
-           OPEN IMAGE
-        ================================================== */
-
-        function openImage(image) {
-
-            const modal =
-                document.getElementById("imageModal");
-
-            const modalImage =
-                document.getElementById("modalImage");
-
-
-            modalImage.src = image;
-
-            modal.classList.add("active");
-
-        }
-
-
-        /* ==================================================
-           CLOSE IMAGE
-        ================================================== */
-
-        function closeImage() {
-
-            const modal =
-                document.getElementById("imageModal");
-
-            modal.classList.remove("active");
-
-        }
-
-
-        /* ==================================================
-           ESC UNTUK MENUTUP PREVIEW
-        ================================================== */
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Escape") {
-
-                    closeImage();
-
-                }
-
-            }
-        );
-
-
-        /* ==================================================
-           KLIK AREA MODAL UNTUK MENUTUP
-        ================================================== */
-
-        document
-            .getElementById("imageModal")
-            .addEventListener(
-                "click",
-                function(event) {
-
-                    if (event.target === this) {
-
-                        closeImage();
-
-                    }
-
-                }
-            );
-
-    </script>
-
+/* ANIMATED PARTICLES */
+const c=document.getElementById("stars"),ctx=c.getContext("2d");let W,H,p=[];
+function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
+function init(){
+ p=Array.from({length:95},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.25,s:Math.random()*.5+.08,a:Math.random()*.65+.1,dx:(Math.random()-.5)*.22}))
+}
+function animate(){
+ ctx.clearRect(0,0,W,H);
+ p.forEach(x=>{
+   x.y-=x.s;x.x+=x.dx;
+   if(x.y<0)x.y=H;if(x.x<0)x.x=W;if(x.x>W)x.x=0;
+   ctx.beginPath();ctx.arc(x.x,x.y,x.r,0,Math.PI*2);
+   ctx.fillStyle=`rgba(255,215,80,${x.a})`;ctx.shadowBlur=9;ctx.shadowColor="#ffd400";ctx.fill();
+ });
+ requestAnimationFrame(animate)
+}
+resize();init();animate();addEventListener("resize",()=>{resize();init()});
+</script>
 </body>
 </html>
